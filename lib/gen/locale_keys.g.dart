@@ -2,8 +2,11 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const welcomeText = 'welcomeText';
   static const login = 'login';
   static const signin = 'signin';
+  static const loginWellcome = 'loginWellcome';
+  static const enterYourEmail = 'enterYourEmail';
+  static const enterYourPassword = 'enterYourPassword';
 }

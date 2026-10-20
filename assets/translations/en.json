@@ -1,5 +1,9 @@
+
 {
-    "welcomeText":"Order Your Book Now!",
-    "login":"Login",
-    "signin":"Register"
+  "welcomeText": "Order Your Book Now!",
+  "login": "Login",
+  "signin": "Register",
+  "loginWellcome": "Welcome back!\nGlad to see you, Again!",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password"
 }

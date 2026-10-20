@@ -1,3 +1,4 @@
+
 import 'package:bookia_application/core/routes/app_routes.dart';
 import 'package:bookia_application/core/theme/app_colors.dart';
 import 'package:bookia_application/core/theme/app_text_styles.dart';
@@ -17,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/BG.png"),
             fit: BoxFit.cover,
@@ -26,35 +27,55 @@ class WelcomeScreen extends StatelessWidget {
         ),
         child: Stack(
           children: [
+            Center(
+              child: ListView(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      120.verticalSpace,
+                      Image.asset(
+                        "assets/images/logo12.png",
+                        width: 220.w,
+                        height: 75.h,
+                        fit: BoxFit.contain,
+                      ),
+                      Text(
+                        LocaleKeys.welcomeText.tr(),
+                        style: AppTextStyles.regularFont,
+                      ),
+                      280.verticalSpace,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.login);
+                        },
+                        child: CustomButton(
+                          text: LocaleKeys.login.tr(),
+                          color: AppColors.basicColor,
+                          textstyle: AppTextStyles.buttonFontWhite,
+                        ),
+                      ),
+                      10.verticalSpace,
+                      CustomButton(
+                        text: LocaleKeys.signin.tr(),
+                        color: AppColors.white,
+                        textstyle: AppTextStyles.buttonFontblack,
+                        borderColor: AppColors.blackBasic,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // زر تغيير اللغة فوق باقي عناصر الشاشة
             Positioned(
               right: 15.w,
               top: 25.h,
-              child: TranslateButton(contxt: context),
-            ),
-
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  120.verticalSpace,
-                  Image.asset(
-                    "assets/images/logo12.png",
-                    width: 220.w,
-                    height: 75.h,
-                    fit: BoxFit.contain,
-                  ),
-                  Text(
-                    LocaleKeys.welcomeText.tr(),
-                    style: AppTextStyles.regularFont,
-                  ),
-                  280.verticalSpace,
-                  GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, AppRoutes.login),
-                    child: CustomButton(text: LocaleKeys.login.tr(), color: AppColors.basicColor, textstyle: AppTextStyles.buttonFontWhite)),
-                  10.verticalSpace,
-                  CustomButton(text: LocaleKeys.signin.tr(), color: AppColors.white, textstyle: AppTextStyles.buttonFontblack, borderColor: AppColors.blackBasic,),
-                ],
+              child: Material(
+                color: Colors.transparent,
+                child: TranslateButton(contxt: context),
               ),
             ),
           ],
