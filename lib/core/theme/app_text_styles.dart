@@ -10,6 +10,12 @@ class AppTextStyles {
     color: AppColors.blackBasic,
     fontFamily: AppConstants.fontFamily,
   );
+  static TextStyle subTitleFont = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight(400),
+    color: AppColors.blackBasic,
+    fontFamily: AppConstants.fontFamily,
+  );
   static TextStyle buttonFontWhite = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight(400),
