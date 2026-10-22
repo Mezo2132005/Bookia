@@ -6,3 +6,4 @@
 <img width="749" height="731" alt="Faild" src="https://github.com/user-attachments/assets/f1192040-91ff-4edb-af08-2919edc12486" />
 <img width="747" height="723" alt="loginAR" src="https://github.com/user-attachments/assets/7611dc5a-0817-4061-93be-57b82ecb42b9" />
 <img width="747" height="721" alt="loginEN" src="https://github.com/user-attachments/assets/dcbc5ace-7d4f-4216-8732-c33095ba3e7a" />
+<img width="729" height="735" alt="Home" src="https://github.com/user-attachments/assets/2a25e62c-2001-4479-b10a-9be41011334f" />
