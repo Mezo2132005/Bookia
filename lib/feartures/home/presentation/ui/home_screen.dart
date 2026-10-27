@@ -6,6 +6,8 @@ import 'package:bookia_application/feartures/home/data/models/products_model.dar
 import 'package:bookia_application/feartures/home/presentation/cubit/cubit/products_cubit.dart';
 import 'package:bookia_application/feartures/home/presentation/ui/widgets/home_appbar.dart';
 import 'package:bookia_application/feartures/home/presentation/ui/widgets/product_skeletonizer.dart';
+import 'package:bookia_application/gen/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,11 +33,11 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Best Seller',
+                    LocaleKeys.BestSeller.tr(),
                     style: AppTextStyles.regularFont,
                   ),
                   IconButton(
-                    tooltip: 'Refresh products',
+                    tooltip: LocaleKeys.Refresh.tr(),
                     onPressed: () {
                       context.read<ProductsCubit>().getProducts();
                     },

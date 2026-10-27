@@ -1,8 +1,12 @@
 import 'package:bookia_application/core/routes/app_routes.dart';
 import 'package:bookia_application/feartures/auth/presentation/cubit/cubit/auth_cubit.dart';
 import 'package:bookia_application/feartures/auth/presentation/ui/login_screen.dart';
+import 'package:bookia_application/feartures/detail/presentation/cubit/details_cubit.dart';
+import 'package:bookia_application/feartures/detail/presentation/ui/product_details.dart';
 import 'package:bookia_application/feartures/home/presentation/cubit/cubit/products_cubit.dart';
+import 'package:bookia_application/feartures/home/presentation/cubit/cubit/search_cubit.dart';
 import 'package:bookia_application/feartures/home/presentation/ui/home_screen.dart';
+import 'package:bookia_application/feartures/home/presentation/ui/search_screen.dart';
 import 'package:bookia_application/feartures/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +26,23 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) => ProductsCubit()..getProducts(),
             child: HomeScreen(),
+          ),
+        );
+      case AppRoutes.search:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => SearchCubit(),
+            child: SearchScreen(),
+          ),
+        );
+      case AppRoutes.details:
+        final id = settings.arguments as int;
+
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => BlocProvider(
+            create: (context) => DetailsCubit()..getProductDetails(id),
+            child: const ProductDetails(),
           ),
         );
       case AppRoutes.welcome:

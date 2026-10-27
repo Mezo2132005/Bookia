@@ -5,5 +5,9 @@
   "signin": "Register",
   "loginWellcome": "Welcome back!\nGlad to see you, Again!",
   "enterYourEmail": "Enter your email",
-  "enterYourPassword": "Enter your password"
+  "enterYourPassword": "Enter your password",
+  "Buy":"Buy",
+  "AddtoCard":"Add To Cart",
+  "BestSeller":"Best Seller",
+  "Refresh":"Refresh products"
 }

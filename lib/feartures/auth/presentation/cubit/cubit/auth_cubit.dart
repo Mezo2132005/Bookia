@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:bookia_application/feartures/auth/data/repo/auth_repo.dart';
-import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';

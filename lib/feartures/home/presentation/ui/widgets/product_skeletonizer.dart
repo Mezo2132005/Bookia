@@ -45,6 +45,5 @@ class ProductSkeletonizer extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

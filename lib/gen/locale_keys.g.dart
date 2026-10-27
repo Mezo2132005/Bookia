@@ -9,4 +9,8 @@ abstract class LocaleKeys {
   static const loginWellcome = 'loginWellcome';
   static const enterYourEmail = 'enterYourEmail';
   static const enterYourPassword = 'enterYourPassword';
+  static const Buy = 'Buy';
+  static const AddCard = 'AddtoCard';
+  static const BestSeller = 'BestSeller';
+  static const Refresh = 'Refresh';
 }

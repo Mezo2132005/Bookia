@@ -9,10 +9,11 @@ class CustomButton extends StatelessWidget {
     required this.color,
     this.borderColor,
     required this.textstyle,
-    this.onPressed,
+    this.onPressed, this.icon,
   });
 
   final String text;
+  final IconData? icon;
   final Color color;
   final Color? borderColor;
   final TextStyle textstyle;
@@ -35,10 +36,10 @@ class CustomButton extends StatelessWidget {
                 : null,
           ),
           child: Center(
-            child: Text(
+            child: icon == null? Text(
               text,
               style: textstyle,
-            ),
+            ): Icon(icon,size: 24.r,),
           ),
         ),
       ),

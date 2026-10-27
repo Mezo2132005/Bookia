@@ -1,7 +1,10 @@
 
+import 'package:bookia_application/core/routes/app_routes.dart';
 import 'package:bookia_application/core/theme/app_colors.dart';
 import 'package:bookia_application/core/theme/app_text_styles.dart';
 import 'package:bookia_application/core/widgets/custom_button.dart';
+import 'package:bookia_application/gen/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -82,9 +85,12 @@ class ProductCard extends StatelessWidget {
                   height: 35.h,
                   width: 75.w,
                   child: CustomButton(
-                    text: 'Buy',
+                    text: LocaleKeys.Buy.tr(),
                     color: AppColors.blackBasic,
                     textstyle: AppTextStyles.buttonFontWhite,
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.details,arguments: id);
+                    },
                   ),
                 ),
               ],

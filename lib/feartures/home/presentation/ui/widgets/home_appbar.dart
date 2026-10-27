@@ -1,3 +1,4 @@
+import 'package:bookia_application/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,8 +10,11 @@ class HomeAppbar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image.asset("assets/images/logo12.png",scale: 6.r,),
-        Icon(Icons.search, size: 24.r),
+        Image.asset("assets/images/logo12.png", scale: 6.r),
+        InkWell(
+          onTap: () => Navigator.pushNamed(context, AppRoutes.search),
+          child: Icon(Icons.search, size: 24.r),
+        ),
       ],
     );
   }

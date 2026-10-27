@@ -5,5 +5,9 @@
   "signin": "إنشاء حساب",
   "loginWellcome": "مرحبًا بعودتك!\nسعداء برؤيتك مجددًا!",
   "enterYourEmail": "أدخل بريدك الإلكتروني",
-  "enterYourPassword": "أدخل كلمة المرور"
+  "enterYourPassword": "أدخل كلمة المرور",
+  "Buy":"شراء",
+  "AddtoCard":"أضف إلى السلة",
+  "BestSeller":"الأكثر مبيعا",
+  "Refresh":"اعادة تحميل المنتجات"
 }

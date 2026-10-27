@@ -10,6 +10,24 @@ class AppTextStyles {
     color: AppColors.blackBasic,
     fontFamily: AppConstants.fontFamily,
   );
+  static TextStyle goldenFont18 = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight(400),
+    color: AppColors.basicColor,
+    fontFamily: AppConstants.fontFamily,
+  );
+  static TextStyle detailsFont12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight(400),
+    color: AppColors.blackBasic,
+    fontFamily: AppConstants.fontFamily,
+  );
+  static TextStyle font30 = TextStyle(
+    fontSize: 30.sp,
+    fontWeight: FontWeight(400),
+    color: AppColors.blackBasic,
+    fontFamily: AppConstants.fontFamily,
+  );
   static TextStyle subTitleFont = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight(400),
