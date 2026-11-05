@@ -19,6 +19,7 @@ class ProductDetails extends StatelessWidget {
       backgroundColor: AppColors.offWhite,
       body: SafeArea(
         child: BlocBuilder<DetailsCubit, DetailsState>(
+          buildWhen: (previous, current) => current is DetailsLoading || current is DetailsFailed || current is DetailsSuccess,
           builder: (context, state) {
             if (state is DetailsSuccess) {
               final DetailsModel details = state.response;
@@ -33,31 +34,36 @@ class ProductDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
                                 width: 60.w,
                                 child: CustomButton(
-                                  text: '',
+                                  text: "",
                                   color: AppColors.white,
-                                  textstyle:
-                                      AppTextStyles.buttonFontblack,
+                                  textstyle: AppTextStyles.buttonFontblack,
                                   icon: Icons.arrow_back_ios,
-                                  onPressed: () =>
-                                      Navigator.pop(context),
+                                  onPressed: () => Navigator.pop(context),
                                 ),
                               ),
                               SizedBox(
                                 width: 60.w,
-                                child: CustomButton(
-                                  text: '',
-                                  color: AppColors.white,
-                                  textstyle:
-                                      AppTextStyles.buttonFontblack,
-                                  icon: Icons.bookmark_outline,
-                                  // Wishlist disabled temporarily.
-                                  onPressed: null,
+                                child: BlocBuilder<DetailsCubit, DetailsState>(
+                                  buildWhen: (previous, current) => current is WishAddSuccess || current is WishAddFailed || current is WishAddLoading || current is WishRemoveSuccess || current is WishRemoveFailed || current is WishRemoveLoading,
+                                  builder: (context, state) {
+                                    return CustomButton(
+                                      text: '',
+                                      color: AppColors.white,
+                                      textstyle: AppTextStyles.buttonFontblack,
+                                      icon: state is WishAddSuccess? Icons.bookmark:Icons.bookmark_outline,
+                                      // Wishlist disabled temporarily.
+                                      onPressed: () {
+                                        state is WishAddSuccess?
+                                        context.read<DetailsCubit>().wishListRemove(details.data?.id):
+                                        context.read<DetailsCubit>().wishListAdd(details.data?.id);
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                             ],
@@ -65,17 +71,15 @@ class ProductDetails extends StatelessWidget {
 
                           24.verticalSpace,
 
-                          Container(
+                          SizedBox(
                             height: 270.h,
                             width: 180.w,
                             child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(8.r),
                               child: Image.network(
                                 product?.image ?? '',
                                 fit: BoxFit.cover,
-                                errorBuilder:
-                                    (context, error, stackTrace) {
+                                errorBuilder: (context, error, stackTrace) {
                                   return const Icon(
                                     Icons.broken_image,
                                     size: 60,
@@ -116,8 +120,7 @@ class ProductDetails extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(16.r),
                     child: Row(
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
                           child: Text(
@@ -130,8 +133,7 @@ class ProductDetails extends StatelessWidget {
                           child: CustomButton(
                             text: LocaleKeys.AddCard.tr(),
                             color: AppColors.blackBasic,
-                            textstyle:
-                                AppTextStyles.buttonFontWhite,
+                            textstyle: AppTextStyles.buttonFontWhite,
                             onPressed: () {
                               // Add to cart logic.
                             },

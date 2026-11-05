@@ -6,4 +6,6 @@ class ApiEndpoints
   static String bestSeller = "/products-bestseller";
   static String productSearch = "/products-search";
   static String productDetails = "/products/";
+  static String addToWishList = "/add-to-wishlist";
+  static String removeToWishList = "/remove-from-wishlist";
 }

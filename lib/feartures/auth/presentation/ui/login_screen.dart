@@ -1,4 +1,5 @@
 
+import 'package:bookia_application/core/networking/dio_factory.dart';
 import 'package:bookia_application/core/routes/app_routes.dart';
 import 'package:bookia_application/core/theme/app_colors.dart';
 import 'package:bookia_application/core/theme/app_text_styles.dart';
@@ -73,8 +74,9 @@ class LoginScreen extends StatelessWidget {
                         10.verticalSpace,
 
                         BlocConsumer<AuthCubit, AuthState>(
-                          listener: (context, state) {
-                            if (state is LoginSuccess) {
+                          listener: (context, state){
+                            if (state is LoginSuccess){
+                              DioFactory.initialize();
                               Navigator.pushNamed(
                                 context,
                                 AppRoutes.home,

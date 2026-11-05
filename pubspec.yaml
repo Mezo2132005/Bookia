@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.5.6
   skeletonizer: ^3.0.0
   lottie: ^3.6.1
+  dio_pretty_logger: ^2.0.0
 
 dev_dependencies:
   flutter_test:

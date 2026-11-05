@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
             SizedBox(
               width: 60.w,
               child: CustomButton(
-                text: "text",
+                text: "",
                 color: AppColors.white,
                 textstyle: AppTextStyles.buttonFontblack,
                 icon: Icons.arrow_back_ios,
