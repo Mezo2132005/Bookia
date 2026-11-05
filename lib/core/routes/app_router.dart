@@ -7,6 +7,7 @@ import 'package:bookia_application/feartures/home/presentation/cubit/cubit/produ
 import 'package:bookia_application/feartures/home/presentation/cubit/cubit/search_cubit.dart';
 import 'package:bookia_application/feartures/home/presentation/ui/home_screen.dart';
 import 'package:bookia_application/feartures/home/presentation/ui/search_screen.dart';
+import 'package:bookia_application/feartures/mainscreen/main_screen.dart';
 import 'package:bookia_application/feartures/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,10 @@ class AppRouter {
             child: SearchScreen(),
           ),
         );
+
+      case AppRoutes.main:
+        return MaterialPageRoute(builder: (context) => const MainScreen());
+
       case AppRoutes.details:
         final id = settings.arguments as int;
 

@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCard extends StatelessWidget {
-  final int id;
-  final String name;
-  final double price;
-  final String image;
+  final int? id;
+  final String? name;
+  final double? price;
+  final String? image;
 
   const ProductCard({
     super.key,
@@ -42,7 +42,7 @@ class ProductCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.r),
               child: Image.network(
-                image,
+                image!,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return const Icon(Icons.broken_image);
@@ -56,7 +56,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Text(
-              name,
+              name!,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -73,7 +73,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '\$${price.toStringAsFixed(2)}',
+                    '\$${price?.toStringAsFixed(2)}',
                     style: AppTextStyles.subTitleFont,
                     overflow: TextOverflow.ellipsis,
                   ),

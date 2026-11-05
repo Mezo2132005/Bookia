@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                               DioFactory.initialize();
                               Navigator.pushNamed(
                                 context,
-                                AppRoutes.home,
+                                AppRoutes.main,
                               );
                             }
 

@@ -8,4 +8,5 @@ class ApiEndpoints
   static String productDetails = "/products/";
   static String addToWishList = "/add-to-wishlist";
   static String removeToWishList = "/remove-from-wishlist";
+  static String wishList = "/wishlist";
 }
