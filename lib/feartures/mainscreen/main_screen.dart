@@ -1,4 +1,6 @@
 
+import 'package:bookia_application/feartures/profile/presentation/cubit/profile_cubit.dart';
+import 'package:bookia_application/feartures/profile/presentation/ui/profile_screen.dart';
 import 'package:bookia_application/feartures/wishlist/presentation/cubit/wish_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,10 +37,10 @@ class _MainScreenState extends State<MainScreen> {
         create: (context) => WishListCubit()..getProducts(),
         child: WishListScreen(),
       ),
-      BlocProvider(
-        create: (context) => WishListCubit()..getProducts(),
-        child: WishListScreen(),
-      ),
+    BlocProvider(
+      create: (_) => ProfileCubit()..showProfile(),
+      child: ProfileScreen(),
+    ),
     ];
 
     return Scaffold(
