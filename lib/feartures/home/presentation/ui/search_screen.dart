@@ -84,7 +84,7 @@ class SearchScreen extends StatelessWidget {
 
                   if (state is SearchFailed) {
                     return Center(
-                      child: Lottie.asset("assets/lotti/empty ghost.json"),
+                      child: Text(state.message),
                     );
                   }
 

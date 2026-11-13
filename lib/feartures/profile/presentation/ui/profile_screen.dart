@@ -45,8 +45,8 @@ class ProfileScreen extends StatelessWidget {
 
         if (state is LogOutFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Logout Failed!'),
+            SnackBar(
+              content: Text(state.message),
             ),
           );
         }
@@ -82,6 +82,7 @@ class ProfileScreen extends StatelessWidget {
 
                   if (state is ProfileFailed) {
                     return ProfileErrorView(
+                      message: state.message,
                       onRetry: () {
                         context.read<ProfileCubit>().showProfile();
                       },

@@ -89,8 +89,8 @@ class HomeScreen extends StatelessWidget {
                     }
 
                     if (state is ProductsFailed) {
-                      return const Center(
-                        child: Text('Failed to load products'),
+                      return Center(
+                        child: Text(state.message),
                       );
                     }
 

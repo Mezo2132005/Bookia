@@ -18,140 +18,178 @@ class ProductDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.offWhite,
       body: SafeArea(
-        child: BlocBuilder<DetailsCubit, DetailsState>(
-          buildWhen: (previous, current) => current is DetailsLoading || current is DetailsFailed || current is DetailsSuccess,
-          builder: (context, state) {
-            if (state is DetailsSuccess) {
-              final DetailsModel details = state.response;
-              final product = details.data;
+        child: BlocListener<DetailsCubit, DetailsState>(
+          listenWhen: (previous, current) =>
+              current is WishAddFailed || current is WishRemoveFailed,
+          listener: (context, state) {
+            final message = switch (state) {
+              WishAddFailed(:final message) => message,
+              WishRemoveFailed(:final message) => message,
+              _ => null,
+            };
+            if (message != null) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(message)));
+            }
+          },
+          child: BlocBuilder<DetailsCubit, DetailsState>(
+            buildWhen: (previous, current) =>
+                current is DetailsLoading ||
+                current is DetailsFailed ||
+                current is DetailsSuccess,
+            builder: (context, state) {
+              if (state is DetailsSuccess) {
+                final DetailsModel details = state.response;
+                final product = details.data;
 
-              return Column(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.all(16.r),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 60.w,
-                                child: CustomButton(
-                                  text: "",
-                                  color: AppColors.white,
-                                  textstyle: AppTextStyles.buttonFontblack,
-                                  icon: Icons.arrow_back_ios,
-                                  onPressed: () => Navigator.pop(context),
+                return Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.all(16.r),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: 60.w,
+                                  child: CustomButton(
+                                    text: "",
+                                    color: AppColors.white,
+                                    textstyle: AppTextStyles.buttonFontblack,
+                                    icon: Icons.arrow_back_ios,
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 60.w,
-                                child: BlocBuilder<DetailsCubit, DetailsState>(
-                                  buildWhen: (previous, current) => current is WishAddSuccess || current is WishAddFailed || current is WishAddLoading || current is WishRemoveSuccess || current is WishRemoveFailed || current is WishRemoveLoading,
-                                  builder: (context, state) {
-                                    return CustomButton(
-                                      text: '',
-                                      color: AppColors.white,
-                                      textstyle: AppTextStyles.buttonFontblack,
-                                      icon: state is WishAddSuccess? Icons.bookmark:Icons.bookmark_outline,
-                                      // Wishlist disabled temporarily.
-                                      onPressed: () {
-                                        state is WishAddSuccess?
-                                        context.read<DetailsCubit>().wishListRemove(details.data?.id):
-                                        context.read<DetailsCubit>().wishListAdd(details.data?.id);
-                                      },
+                                SizedBox(
+                                  width: 60.w,
+                                  child:
+                                      BlocBuilder<DetailsCubit, DetailsState>(
+                                        buildWhen: (previous, current) =>
+                                            current is WishAddSuccess ||
+                                            current is WishAddFailed ||
+                                            current is WishAddLoading ||
+                                            current is WishRemoveSuccess ||
+                                            current is WishRemoveFailed ||
+                                            current is WishRemoveLoading,
+                                        builder: (context, state) {
+                                          return CustomButton(
+                                            text: '',
+                                            color: AppColors.white,
+                                            textstyle:
+                                                AppTextStyles.buttonFontblack,
+                                            icon: state is WishAddSuccess
+                                                ? Icons.bookmark
+                                                : Icons.bookmark_outline,
+                                            // Wishlist disabled temporarily.
+                                            onPressed: () {
+                                              state is WishAddSuccess
+                                                  ? context
+                                                        .read<DetailsCubit>()
+                                                        .wishListRemove(
+                                                          details.data?.id,
+                                                        )
+                                                  : context
+                                                        .read<DetailsCubit>()
+                                                        .wishListAdd(
+                                                          details.data?.id,
+                                                        );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                ),
+                              ],
+                            ),
+
+                            24.verticalSpace,
+
+                            SizedBox(
+                              height: 270.h,
+                              width: 180.w,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.r),
+                                child: Image.network(
+                                  product?.image ?? '',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Icon(
+                                      Icons.broken_image,
+                                      size: 60,
                                     );
                                   },
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
 
-                          24.verticalSpace,
+                            24.verticalSpace,
 
-                          SizedBox(
-                            height: 270.h,
-                            width: 180.w,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.r),
-                              child: Image.network(
-                                product?.image ?? '',
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
-                                    Icons.broken_image,
-                                    size: 60,
-                                  );
-                                },
-                              ),
+                            Text(
+                              product?.name ?? '',
+                              textAlign: TextAlign.center,
+                              style: AppTextStyles.font30,
+                            ),
+
+                            12.verticalSpace,
+
+                            Text(
+                              product?.category ?? '',
+                              style: AppTextStyles.goldenFont18,
+                            ),
+
+                            20.verticalSpace,
+
+                            Text(
+                              (product?.description ?? '')
+                                  .replaceAll('<p>', '')
+                                  .replaceAll('</p>', ''),
+                              style: AppTextStyles.detailsFont12,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.all(16.r),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              '${product?.price ?? ''}\$',
+                              style: AppTextStyles.font30,
                             ),
                           ),
-
-                          24.verticalSpace,
-
-                          Text(
-                            product?.name ?? '',
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.font30,
-                          ),
-
-                          12.verticalSpace,
-
-                          Text(
-                            product?.category ?? '',
-                            style: AppTextStyles.goldenFont18,
-                          ),
-
-                          20.verticalSpace,
-
-                          Text(
-                            (product?.description ?? '')
-                                .replaceAll('<p>', '')
-                                .replaceAll('</p>', ''),
-                            style: AppTextStyles.detailsFont12,
+                          SizedBox(
+                            width: 180.w,
+                            child: CustomButton(
+                              text: LocaleKeys.AddCard.tr(),
+                              color: AppColors.blackBasic,
+                              textstyle: AppTextStyles.buttonFontWhite,
+                              onPressed: () {
+                                // Add to cart logic.
+                              },
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.all(16.r),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            '${product?.price ?? ''}\$',
-                            style: AppTextStyles.font30,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 180.w,
-                          child: CustomButton(
-                            text: LocaleKeys.AddCard.tr(),
-                            color: AppColors.blackBasic,
-                            textstyle: AppTextStyles.buttonFontWhite,
-                            onPressed: () {
-                              // Add to cart logic.
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            } else if (state is DetailsLoading) {
-              return const DetailsSkeletonizer();
-            } else {
-              return const Center(
-                child: Text('Unable to load product details'),
-              );
-            }
-          },
+                  ],
+                );
+              } else if (state is DetailsLoading) {
+                return const DetailsSkeletonizer();
+              } else if (state is DetailsFailed) {
+                return Center(child: Text(state.message));
+              } else {
+                return const Center(
+                  child: Text('Unable to load product details'),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

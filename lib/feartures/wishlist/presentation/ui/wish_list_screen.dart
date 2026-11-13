@@ -51,9 +51,9 @@ class WishListScreen extends StatelessWidget {
 
                       if (state is WishListSuccess) {
                         final List<WishListProductModel>? products =
-                            state.response!.data!.products;
+                            state.response.data?.products;
 
-                        if (products!.isEmpty) {
+                        if (products == null || products.isEmpty) {
                           return Center(
                             child: Lottie.asset(
                               "assets/lotti/empty ghost.json",
@@ -85,8 +85,8 @@ class WishListScreen extends StatelessWidget {
                       }
 
                       if (state is WishListFailed) {
-                        return const Center(
-                          child: Text('Failed to load products'),
+                        return Center(
+                          child: Text(state.message),
                         );
                       }
 

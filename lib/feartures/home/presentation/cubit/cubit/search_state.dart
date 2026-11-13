@@ -13,4 +13,8 @@ final class SearchSuccess extends SearchState {
   SearchSuccess(this.response);
 }
 
-final class SearchFailed extends SearchState {}
+final class SearchFailed extends SearchState {
+  final String message;
+
+  SearchFailed(this.message);
+}

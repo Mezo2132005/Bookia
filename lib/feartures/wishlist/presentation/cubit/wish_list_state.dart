@@ -6,7 +6,11 @@ sealed class WishListState {}
 final class WishListInitial extends WishListState {}
 final class WishListLoading extends WishListState {}
 final class WishListSuccess extends WishListState {
-  final WishListResponseModel? response;
+  final WishListResponseModel response;
   WishListSuccess(this.response);
 }
-final class WishListFailed extends WishListState {}
+final class WishListFailed extends WishListState {
+  final String message;
+
+  WishListFailed(this.message);
+}

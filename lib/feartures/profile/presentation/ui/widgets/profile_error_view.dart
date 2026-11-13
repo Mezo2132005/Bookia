@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileErrorView extends StatelessWidget {
+  final String message;
   final VoidCallback onRetry;
 
   const ProfileErrorView({
     super.key,
+    required this.message,
     required this.onRetry,
   });
 
@@ -25,8 +27,8 @@ class ProfileErrorView extends StatelessWidget {
 
           12.verticalSpace,
 
-          const Text(
-            'Failed to load profile',
+          Text(
+            message,
             style: TextStyle(fontSize: 16),
           ),
 

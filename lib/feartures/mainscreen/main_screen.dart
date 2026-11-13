@@ -56,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.white,
         selectedItemColor: AppColors.basicColor,
-        unselectedItemColor: AppColors.blackBasic.withOpacity(0.45),
+        unselectedItemColor: AppColors.blackBasic.withValues(alpha: 0.45),
         selectedFontSize: 12,
         unselectedFontSize: 11,
         showSelectedLabels: true,

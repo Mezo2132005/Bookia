@@ -10,12 +10,20 @@ final class ProfileSuccess extends ProfileState {
   final ProfileResponseModel response;
   ProfileSuccess(this.response);
 }
-final class ProfileFailed extends ProfileState {}
+final class ProfileFailed extends ProfileState {
+  final String message;
+
+  ProfileFailed(this.message);
+}
 
 
 final class LogOutLoading extends ProfileState {}
 final class LogOutSuccess extends ProfileState {
-  final bool? response;
+  final bool response;
   LogOutSuccess(this.response);
 }
-final class LogOutFailed extends ProfileState {}
+final class LogOutFailed extends ProfileState {
+  final String message;
+
+  LogOutFailed(this.message);
+}

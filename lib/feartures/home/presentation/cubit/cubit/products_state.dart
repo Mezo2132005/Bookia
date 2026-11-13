@@ -13,5 +13,8 @@ final class ProductsSuccess extends ProductsState {
   ProductsSuccess(this.response);
 }
 
-final class ProductsFailed extends ProductsState {}
+final class ProductsFailed extends ProductsState {
+  final String message;
 
+  ProductsFailed(this.message);
+}

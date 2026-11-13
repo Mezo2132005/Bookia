@@ -9,12 +9,24 @@ final class DetailsSuccess extends DetailsState {
   final DetailsModel response;
   DetailsSuccess(this.response);
 }
-final class DetailsFailed extends DetailsState {}
+final class DetailsFailed extends DetailsState {
+  final String message;
+
+  DetailsFailed(this.message);
+}
 
 final class WishAddLoading extends DetailsState {}
-final class WishAddFailed extends DetailsState {}
+final class WishAddFailed extends DetailsState {
+  final String message;
+
+  WishAddFailed(this.message);
+}
 final class WishAddSuccess extends DetailsState {}
 
 final class WishRemoveLoading extends DetailsState {}
-final class WishRemoveFailed extends DetailsState {}
+final class WishRemoveFailed extends DetailsState {
+  final String message;
+
+  WishRemoveFailed(this.message);
+}
 final class WishRemoveSuccess extends DetailsState {}
